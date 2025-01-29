@@ -13,4 +13,9 @@ class Airplane extends Model
         'autonomy',
         'image',
     ];
+
+    public function flights()
+    {
+        return $this->hasMany(Flight::class);
+    }
 }

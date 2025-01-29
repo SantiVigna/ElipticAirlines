@@ -15,4 +15,9 @@ class Flight extends Model
         'distance',
         'price',
     ];
+
+    public function airplane()
+    {
+        return $this->belongsTo(Airplane::class);
+    }
 }

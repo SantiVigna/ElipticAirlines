@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('arrival_time');
             $table->bigInteger('distance');
             $table->bigInteger('price');
+            $table->foreignId('airplane_id')->constrained('airplanes');
             $table->timestamps();
         });
     }
