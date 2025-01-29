@@ -11,5 +11,6 @@ class Airplane extends Model
         'model',
         'capacity',
         'autonomy',
+        'image',
     ];
 }

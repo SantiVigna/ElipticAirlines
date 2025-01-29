@@ -27,6 +27,7 @@ class AirplaneController extends Controller
             'model' => 'required|string',
             'capacity' => 'required|integer',
             'autonomy' => 'required|integer',
+            'image' => 'string',
         ]);
 
         $airplane = Airplane::create([
@@ -34,6 +35,7 @@ class AirplaneController extends Controller
             'model' => $validated['model'],
             'capacity' => $validated['capacity'],
             'autonomy' => $validated['autonomy'],
+            'image' => $validated['image'],
         ]);
 
         $airplane->save();
@@ -57,10 +59,11 @@ class AirplaneController extends Controller
         $airplane = Airplane::findOrFail($id);
 
         $validated = $request->validate([
-            'registration' => 'required|string',
-            'model' => 'required|string',
-            'capacity' => 'required|integer',
-            'autonomy' => 'required|integer',
+            'registration' => 'string',
+            'model' => 'string',
+            'capacity' => 'integer',
+            'autonomy' => 'integer',
+            'image' => 'string',
         ]);
 
         $airplane->update([

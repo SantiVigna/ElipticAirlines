@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('model');
             $table->bigInteger('capacity');
             $table->bigInteger('autonomy');
+            $table->string('image');
             $table->timestamps();
         });
     }
