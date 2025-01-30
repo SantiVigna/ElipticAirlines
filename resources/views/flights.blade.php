@@ -6,7 +6,7 @@
         <h1 class="text-4xl font-bold text-gray-800">¡Bienvenido a Eliptic Airlines!</h1>
         <p class="text-gray-600 ">Tu aerolínea de confianza</p>
     </div>
-    
+    @foreach ($flights as $flight)
         <div class="flex flex-col items-center justify-center h-screen">
             <div class="bg-white shadow-md rounded-lg p-6 w-96">
                 <div class="flex justify-between items-center mb-4">
@@ -56,6 +56,7 @@
                 </div>
             </div>
         </div>
+    </div>
+    @endforeach
 </div>
-
 @endsection
