@@ -14,6 +14,7 @@ class Flight extends Model
         'arrival_time',
         'distance',
         'price',
+        'airplane_id',
     ];
 
     public function airplane()

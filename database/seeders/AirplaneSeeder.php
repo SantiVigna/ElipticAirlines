@@ -24,8 +24,8 @@ class AirplaneSeeder extends Seeder
             [
                 'registration' => 'ES-B32',
                 'model' => 'Airbus A320',
-                'capacity' => 150,
-                'autonomy' => 3500,
+                'capacity' => 40,
+                'autonomy' => 1000,
                 'image' => 'airbus_a320.jpg',
             ],
             [
@@ -66,15 +66,15 @@ class AirplaneSeeder extends Seeder
             [
                 'registration' => 'ES-H90',
                 'model' => 'Airbus A350',
-                'capacity' => 300,
-                'autonomy' => 13000,
+                'capacity' => 110,
+                'autonomy' => 1200,
                 'image' => 'airbus_a350.jpg',
             ],
             [
                 'registration' => 'ES-I01',
                 'model' => 'Boeing 747',
-                'capacity' => 400,
-                'autonomy' => 14000,
+                'capacity' => 170,
+                'autonomy' => 2000,
                 'image' => 'boeing_747.jpg',
             ],
             [

@@ -22,6 +22,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '01/02/2023',
                 'distance' => 620,
                 'price' => 50,
+                'airplane_id' => 8,
             ],
             [
                 'flight_number' => 'ES-B32',
@@ -31,6 +32,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '03/02/2023',
                 'distance' => 1035,
                 'price' => 120,
+                'airplane_id' => 9,
             ],
             [
                 'flight_number' => 'FR-C45',
@@ -40,6 +42,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '05/02/2023',
                 'distance' => 1105,
                 'price' => 150,
+                'airplane_id' => 6,
             ],
             [
                 'flight_number' => 'IT-D56',
@@ -49,6 +52,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '07/02/2023',
                 'distance' => 1180,
                 'price' => 180,
+                'airplane_id' => 3,
             ],
             [
                 'flight_number' => 'GR-E67',
@@ -58,6 +62,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '09/02/2023',
                 'distance' => 930,
                 'price' => 100,
+                'airplane_id' => 2,
             ],
             [
                 'flight_number' => 'UK-F78',
@@ -67,6 +72,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '11/02/2023',
                 'distance' => 360,
                 'price' => 80,
+                'airplane_id' => 2,
             ],
             [
                 'flight_number' => 'NT-G89',
@@ -76,6 +82,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '13/02/2023',
                 'distance' => 1480,
                 'price' => 700,
+                'airplane_id' => 3,
             ],
             [
                 'flight_number' => 'US-H90',
@@ -85,6 +92,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '15/02/2023',
                 'distance' => 4500,
                 'price' => 800,
+                'airplane_id' => 4,
             ],
             [
                 'flight_number' => 'AU-I01',
@@ -94,6 +102,7 @@ class FlightSeeder extends Seeder
                 'arrival_time' => '18/02/2023',
                 'distance' => 7800,
                 'price' => 900,
+                'airplane_id' => 13,
             ],
             [
                 'flight_number' => 'BR-J12',
@@ -101,8 +110,9 @@ class FlightSeeder extends Seeder
                 'arrival' => 'Beijing',
                 'departure_time' => '19/02/2023',
                 'arrival_time' => '20/02/2023',
-                'distance' => 17800,
+                'distance' => 13800,
                 'price' => 1000,
+                'airplane_id' => 14,
             ]
         ];
 
