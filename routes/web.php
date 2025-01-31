@@ -8,10 +8,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('flights', function () {
-    return view('flights');
-})->name('flights');
-
 Route::get('flights' , [FlightController::class, 'index'])->name('flightsIndex');
 
 Route::get('/dashboard', function () {
