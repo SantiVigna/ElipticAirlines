@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FlightController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,7 +10,9 @@ Route::get('/', function () {
 
 Route::get('flights', function () {
     return view('flights');
-})->name('flightsIndex');
+})->name('flights');
+
+Route::get('flights' , [FlightController::class, 'index'])->name('flightsIndex');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
