@@ -85,6 +85,6 @@ class AirplaneController extends Controller
         $airplane = Airplane::findOrFail($id);
         $airplane->delete();   
         
-        return response()->json(['message' => 'Airplane deleted Succesfully'], 204);   
+        return response()->json(['message' => 'Airplane deleted Succesfully'], 200);   
     }
 }
