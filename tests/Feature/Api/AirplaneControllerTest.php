@@ -61,4 +61,10 @@ class AirplaneControllerTest extends TestCase
                 ]);
     }
 
+    public function test_CheckIfCanDeleteAnAirplane() {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->deleteJson(route('airplanesApiDestroy', 1));
+        $response->assertStatus(200);
+    }
 }
