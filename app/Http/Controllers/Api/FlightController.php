@@ -24,19 +24,21 @@ class FlightController extends Controller
     {
         $validated = $request->validate([
             'flight_number' => 'required|string',
-            'departure_airport' => 'required|string',
-            'arrival_airport' => 'required|string',
+            'departure' => 'required|string',
+            'arrival' => 'required|string',
             'departure_time' => 'required|date',
             'arrival_time' => 'required|date',
+            'distance' => 'required|integer',
             'price' => 'required|integer',
         ]);
 
         $flight = Flight::create([
             'flight_number' => $validated['flight_number'],
-            'departure_airport' => $validated['departure_airport'],
-            'arrival_airport' => $validated['arrival_airport'],
+            'departure' => $validated['departure'],
+            'arrival' => $validated['arrival'],
             'departure_time' => $validated['departure_time'],
             'arrival_time' => $validated['arrival_time'],
+            'distance' => $validated['distance'],
             'price' => $validated['price'],
         ]);
 
@@ -61,20 +63,22 @@ class FlightController extends Controller
         $flight = Flight::findOrFail($id);
 
         $validated = $request->validate([
-            'flight_number' => 'required|string',
-            'departure_airport' => 'required|string',
-            'arrival_airport' => 'required|string',
-            'departure_time' => 'required|date',
-            'arrival_time' => 'required|date',
-            'price' => 'required|integer',
+            'flight_number' => 'string',
+            'departure' => 'string',
+            'arrival' => 'string',
+            'departure_time' => 'date',
+            'arrival_time' => 'date',
+            'distance' => 'integer',
+            'price' => 'integer',
         ]);
 
         $flight->update([
             'flight_number' => $validated['flight_number'],
-            'departure_airport' => $validated['departure_airport'],
-            'arrival_airport' => $validated['arrival_airport'],
+            'departure' => $validated['departure'],
+            'arrival' => $validated['arrival'],
             'departure_time' => $validated['departure_time'],
             'arrival_time' => $validated['arrival_time'],
+            'distance' => $validated['distance'],
             'price' => $validated['price'],
         ]);
 
