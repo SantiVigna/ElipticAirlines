@@ -20,4 +20,13 @@ class AirplaneControllerTest extends TestCase
                  ->assertJsonCount(14);
     }
 
+    public function test_CheckIfCanGetOnlyOneAirplane() {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->getJson(route('airplanesApiShow', 1));
+        $data = ['id' => 1];
+        $response->assertStatus(200)
+                 ->assertJsonFragment($data);
+    }
+
 }
