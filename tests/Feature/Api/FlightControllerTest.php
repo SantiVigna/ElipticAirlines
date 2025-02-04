@@ -47,5 +47,24 @@ class FlightControllerTest extends TestCase
                     'flight_number' => 'ES-A19'
                 ]);
     }
+    public function test_CheckIfCanUpdateAFlight() {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->putJson(route('flightsApiUpdate', 1), [
+            'flight_number' => 'ES-A19',
+            'departure' => 'Madrid',
+            'arrival' => 'Barcelona',
+            'departure_time' => '01/02/2023',
+            'arrival_time' => '01/02/2023',
+            'distance' => 620,
+            'price' => 50,
+            'airplane_id' => 8,
+        ]);
+
+        $response->assertStatus(200)
+                 ->assertJsonFragment([
+                    'flight_number' => 'ES-A19'
+                ]);
+    }
 
 }
