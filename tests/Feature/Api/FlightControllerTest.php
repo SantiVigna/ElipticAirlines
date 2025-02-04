@@ -66,5 +66,11 @@ class FlightControllerTest extends TestCase
                     'flight_number' => 'ES-A19'
                 ]);
     }
+    
+    public function test_CheckIfCanDeleteAFlight() {
+        $this->seed(DatabaseSeeder::class);
 
+        $response = $this->deleteJson(route('flightsApiDestroy', 1));
+        $response->assertStatus(200);
+    }
 }
