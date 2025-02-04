@@ -10,7 +10,7 @@
                 {{-- <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-4 rounded-md text-black dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-black hover:text-white dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-500 bg m-4">Reservations</a> --}}
                 @endif  
             @endauth
-            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-4 rounded-md text-black dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-black hover:text-white dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-500 bg m-4">Contact</a>
+            <a href="{{route('contact')}}" class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-4 rounded-md text-black dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-black hover:text-white dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-500 bg m-4">Contact</a>
         </nav>
         <div class="flex items-center space-x-4">
             @if (Auth::user())
