@@ -18,7 +18,7 @@
                     <tr>
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-3">
-                                <div class="inline-flex w-10 h-10"> <img class='w-10 h-10 object-cover rounded-full' alt='User avatar' src='{{$airplane->image}}' /> </div>
+                                <div class="inline-flex w-10 h-10"> <img class='w-10 h-10 object-cover rounded-full' alt='User avatar' src='https://res.cloudinary.com/dq2kswexq/image/upload/v1738074889/ElipticAirlines/sfghzdhlqpbfzfkgpztr.jpg' /> </div>
                                 <div>
                                     <p> {{$airplane->registration}} </p>
                                 </div>
