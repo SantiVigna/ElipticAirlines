@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::get('flights' , [FlightController::class, 'index'])->name('flightsIndex');
 Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex');
 
