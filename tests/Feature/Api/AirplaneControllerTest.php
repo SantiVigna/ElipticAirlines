@@ -45,4 +45,20 @@ class AirplaneControllerTest extends TestCase
                 ]);
     }
 
+    public function test_CheckIfCanUpdateAnAirplane() {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->putJson(route('airplanesApiUpdate', 1), [
+            'registration' => 'PT-ABC',
+            'model' => 'Boeing 737',
+            'capacity' => 200,
+            'autonomy' => 3000,
+            'image' => 'boeing737.jpg',
+        ]);
+        $response->assertStatus(200)
+                 ->assertJsonFragment([
+                    'registration' => 'PT-ABC'
+                ]);
+    }
+
 }
