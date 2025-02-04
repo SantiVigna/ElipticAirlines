@@ -29,4 +29,20 @@ class AirplaneControllerTest extends TestCase
                  ->assertJsonFragment($data);
     }
 
+    public function test_CheckIfCanCreateAnAirplane() {
+        $this->seed(DatabaseSeeder::class);
+
+        $response = $this->postJson(route('airplanesApiStore'), [
+            'registration' => 'PT-ABC',
+            'model' => 'Boeing 737',
+            'capacity' => 200,
+            'autonomy' => 3000,
+            'image' => 'boeing737.jpg'
+        ]);
+        $response->assertStatus(201)
+                 ->assertJsonFragment([
+                    'registration' => 'PT-ABC'
+                ]);
+    }
+
 }
