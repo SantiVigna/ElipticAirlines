@@ -26,10 +26,11 @@ class FlightController extends Controller
             'flight_number' => 'required|string',
             'departure' => 'required|string',
             'arrival' => 'required|string',
-            'departure_time' => 'required|date',
-            'arrival_time' => 'required|date',
+            'departure_time' => 'required|string',
+            'arrival_time' => 'required|string',
             'distance' => 'required|integer',
             'price' => 'required|integer',
+            'airplane_id' => 'required|integer',
         ]);
 
         $flight = Flight::create([
@@ -40,6 +41,7 @@ class FlightController extends Controller
             'arrival_time' => $validated['arrival_time'],
             'distance' => $validated['distance'],
             'price' => $validated['price'],
+            'airplane_id' => $validated['airplane_id'],
         ]);
 
         $flight->save();
@@ -66,10 +68,11 @@ class FlightController extends Controller
             'flight_number' => 'string',
             'departure' => 'string',
             'arrival' => 'string',
-            'departure_time' => 'date',
-            'arrival_time' => 'date',
+            'departure_time' => 'string',
+            'arrival_time' => 'string',
             'distance' => 'integer',
             'price' => 'integer',
+            'airplane_id' => 'integer',
         ]);
 
         $flight->update([
@@ -80,6 +83,7 @@ class FlightController extends Controller
             'arrival_time' => $validated['arrival_time'],
             'distance' => $validated['distance'],
             'price' => $validated['price'],
+            'airplane_id' => $validated['airplane_id'],
         ]);
 
         $flight->save();
@@ -93,6 +97,6 @@ class FlightController extends Controller
     {
         $flight = Flight::findOrFail($id);
         $flight->delete();
-        return response()->json(["message" => "Flight deleted Succesfully"], 204); 
+        return response()->json(["message" => "Flight deleted Succesfully"], 200); 
     }
 }
