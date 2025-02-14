@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Airplane;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -22,7 +23,8 @@ class FlightController extends Controller
      */
     public function create()
     {
-        return view('createFlightForm');
+        $airplanes = Airplane::count();
+        return view('createFlightForm' , compact('airplanes'));
     }
 
     /**
@@ -41,7 +43,7 @@ class FlightController extends Controller
             'airplane_id' => 'required|integer',
         ]);
 
-        $flight = Flight::create([
+        Flight::create([
             'flight_number' => $validated['flight_number'],
             'departure' => $validated['departure'],
             'arrival' => $validated['arrival'],
@@ -52,8 +54,7 @@ class FlightController extends Controller
             'airplane_id' => $validated['airplane_id'],
         ]);
 
-        $flight->save();
-        return Redirect::to(route('flightsIndex'));
+        return redirect()->route('flightsIndex');
     }
 
     /**
