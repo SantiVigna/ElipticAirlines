@@ -73,21 +73,10 @@
               Airplane to Assign*
             </label>
             <div>
-              <select class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="airplane" name="airplane">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
+              <select class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="airplane_id" name="airplane_id" type="text">
+                @for ($i = 1; $i <= $airplanes; $i++)
+                  <option>{{ $i }}</option>
+                @endfor
               </select>
             </div>
           </div>
@@ -154,7 +143,7 @@
           </div>
         <div class="-mx-3 md:flex mt-2 flex flex-col flex-wrap justify-center items-center mg-0-auto">
           <div class="md:w-full px-3 flex justify-center space-x-4">
-            <button action="{{route('flightsStore')}}" type="submit" class="md:w-1/3 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full">
+            <button action="{{route('flightsStore')}}" type="submit" class="md:w-1/3 bg-blue-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-blue-200 hover:border-gray-100 rounded-full">
               Submit
             </button>
             <button type="reset" class="md:w-1/3 bg-red-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-red-300 hover:border-gray-100 rounded-full">
