@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FlightController extends Controller
 {
@@ -21,7 +22,7 @@ class FlightController extends Controller
      */
     public function create()
     {
-        //
+        return view('createFlightForm');
     }
 
     /**
@@ -29,7 +30,30 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'flight_number' => 'required|string',
+            'departure' => 'required|string',
+            'arrival' => 'required|string',
+            'departure_time' => 'required|string',
+            'arrival_time' => 'required|string',
+            'distance' => 'required|integer',
+            'price' => 'required|integer',
+            'airplane_id' => 'required|integer',
+        ]);
+
+        $flight = Flight::create([
+            'flight_number' => $validated['flight_number'],
+            'departure' => $validated['departure'],
+            'arrival' => $validated['arrival'],
+            'departure_time' => $validated['departure_time'],
+            'arrival_time' => $validated['arrival_time'],
+            'distance' => $validated['distance'],
+            'price' => $validated['price'],
+            'airplane_id' => $validated['airplane_id'],
+        ]);
+
+        $flight->save();
+        return Redirect::to(route('flightsIndex'));
     }
 
     /**

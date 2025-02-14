@@ -14,6 +14,9 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('flights' , [FlightController::class, 'index'])->name('flightsIndex');
+Route::get('flights/create' , [FlightController::class, 'create'])->name('flightsForm');
+Route::post('flights' , [FlightController::class, 'store'])->name('flightsStore');
+
 Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex');
 
 Route::get('/dashboard', function () {
