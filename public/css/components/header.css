@@ -1,0 +1,41 @@
+header {
+    background-color: #0A1F44;
+}
+
+header a {
+    color: #F4F7FA;
+}
+
+header button {
+    background-color: #007BCE;
+}
+
+.nav-button {
+    background-color: #007BCE;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+  
+.nav-button:hover {
+    background-color: #E0B85B;
+    color: #0A1F44;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(224, 184, 91, 0.5);
+}
+
+.nav-link {
+    background-color: #007BCE;
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: #E0B85B;
+    color: black; 
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
