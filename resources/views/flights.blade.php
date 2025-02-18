@@ -59,7 +59,7 @@
                 </div>
                 <div class="flex flex-col flex-wrap p-2">
                   <p class="font-bold">{{$flight->arrival_time}}</p>
-                  <p class="text-black-500 text-xl">Zambia</p>
+                  <p class="text-black-500 text-xl">{{$flight->arrival}}</p>
                 </div>
               </div>
               <div class="mt-4 bg-gray-100 flex flex-row flex-wrap md:flex-nowrap justify-between items-baseline">
