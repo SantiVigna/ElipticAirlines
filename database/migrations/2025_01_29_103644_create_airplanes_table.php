@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('model');
             $table->bigInteger('capacity');
             $table->bigInteger('autonomy');
-            $table->string('image');
+            $table->string('image')->nullable()->default('https://res.cloudinary.com/dq2kswexq/image/upload/v1738074889/ElipticAirlines/sfghzdhlqpbfzfkgpztr.jpg');
             $table->timestamps();
         });
     }
