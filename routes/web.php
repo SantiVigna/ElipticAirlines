@@ -15,9 +15,11 @@ Route::get('/contact', function () {
 
 Route::get('flights' , [FlightController::class, 'index'])->name('flightsIndex');
 Route::get('flights/create' , [FlightController::class, 'create'])->name('flightsForm');
-Route::post('flights' , [FlightController::class, 'store'])->name('flightsStore');
+Route::post('flights/store' , [FlightController::class, 'store'])->name('flightsStore');
 
 Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex');
+Route::get('airplanes/create' , [AirplaneController::class, 'create'])->name('airplanesForm');
+Route::post('flights/store' , [AirplaneController::class, 'store'])->name('airplanesStore');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
