@@ -21,7 +21,7 @@ class AirplaneController extends Controller
      */
     public function create()
     {
-        //
+        return view('createAirplaneForm');
     }
 
     /**
@@ -29,7 +29,25 @@ class AirplaneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $defaultAirplaneImage = 'https://res.cloudinary.com/dq2kswexq/image/upload/v1738074889/ElipticAirlines/sfghzdhlqpbfzfkgpztr.jpg';
+        
+        $validated = $request->validate([
+            'registration' => 'required|string',
+            'model' => 'required|string',
+            'capacity' => 'required|integer',
+            'autonomy' => 'required|integer',
+            'image' => 'nullable|string',
+        ]);
+
+        Airplane::create([
+            'registration' => $validated['registration'],
+            'model' => $validated['model'],
+            'capacity' => $validated['capacity'],
+            'autonomy' => $validated['autonomy'],
+            'image' => $validated['image'] ?? $defaultAirplaneImage,
+        ]);
+
+        return redirect()->route('airplanesIndex');
     }
 
     /**
