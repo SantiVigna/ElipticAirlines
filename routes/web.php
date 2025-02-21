@@ -19,7 +19,7 @@ Route::post('flights/store' , [FlightController::class, 'store'])->name('flights
 
 Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex');
 Route::get('airplanes/create' , [AirplaneController::class, 'create'])->name('airplanesForm');
-Route::post('flights/store' , [AirplaneController::class, 'store'])->name('airplanesStore');
+Route::post('airplanes/store' , [AirplaneController::class, 'store'])->name('airplanesStore');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
