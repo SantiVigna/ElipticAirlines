@@ -10,14 +10,14 @@
 @auth
     @if (Auth::user()->isAdmin == 1)
     <div class="flex flex-row justify-center mt-10">
-      <a href="{{route('flightsForm')}}">
-        <button class="inline-flex items-center px-6 py-3 border border-transparent text-lg leading-4 font-semibold rounded-full text-white bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-600 hover:to-blue-800 focus:outline-none transition ease-in-out duration-500 shadow-lg transform hover:scale-105 m-4">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-          </svg>
-          New Flight
-        </button>
-      </a>
+    <a href="{{route('flightsForm')}}">
+            <button class="inline-flex items-center px-6 py-3 border border-transparent text-lg leading-4 font-semibold rounded-full text-white bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 focus:outline-none transition ease-in-out duration-500 shadow-lg transform hover:scale-105 m-4">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            New Flight
+            </button>
+        </a>
     </div>
     @endif
 @endauth
@@ -37,19 +37,19 @@
           @auth
             @if (Auth::user()->isAdmin == 1)    
                 <div class="mt-2 flex justify-start p-2">
-                <a href="" class="flex mx-2 ml-6 h-8 px-2 flex-row items-baseline rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white p-1 hover:from-blue-600 hover:to-blue-800 transition duration-300 shadow-lg transform hover:scale-105">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit" style="height: 12px; width: 12px;">
-                  <path d="M11 4h2a2 2 0 0 1 2 2v2M16.24 7.76l-9.19 9.19a2 2 0 0 1-1.06.56l-3.51.88a1 1 0 0 1-1.21-1.21l.88-3.51a2 2 0 0 1 .56-1.06l9.19-9.19a2 2 0 0 1 2.83 0l1.41 1.41a2 2 0 0 1 0 2.83z"></path>
-                  </svg>
-                  <p class="font-normal text-sm ml-1 text-white">Edit Flight</p>
-                </a>
+                  <a href="{{ route('flightEditForm', $flight->id)}}" class="flex mx-2 ml-6 h-8 px-2 flex-row items-baseline rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white p-1 hover:from-blue-600 hover:to-blue-800 transition duration-300 shadow-lg transform hover:scale-105">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit" style="height: 12px; width: 12px;">
+                    <path d="M11 4h2a2 2 0 0 1 2 2v2M16.24 7.76l-9.19 9.19a2 2 0 0 1-1.06.56l-3.51.88a1 1 0 0 1-1.21-1.21l.88-3.51a2 2 0 0 1 .56-1.06l9.19-9.19a2 2 0 0 1 2.83 0l1.41 1.41a2 2 0 0 1 0 2.83z"></path>
+                    </svg>
+                    <p class="font-semibold text-sm ml-1 text-white">Edit Flight</p>
+                  </a>
                 <a href="" class="flex mx-2 ml-6 h-8 px-2 flex-row items-baseline rounded-full bg-gradient-to-r from-red-400 to-red-600 text-white p-1 hover:from-red-600 hover:to-red-800 transition duration-300 shadow-lg transform hover:scale-105">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2" style="height: 12px; width: 12px;">
                   <path d="M3 6h18M9 6v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6M10 6V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"></path>
                   <path d="M18 6l-1 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 6"></path>
                   <path d="M10 11v6M14 11v6"></path>
                   </svg>
-                  <p class="font-normal text-sm ml-1 text-white">Delete Flight</p>
+                  <p class="font-semibold text-sm ml-1 text-white">Delete Flight</p>
                 </a>
                 </div>  
             @endif
