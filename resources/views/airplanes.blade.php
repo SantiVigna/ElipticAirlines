@@ -46,12 +46,12 @@
                         <td class="px-6 py-4 text-center"> <span class="text-gray-900 font-medium"> {{$airplane->capacity}} </span> </td>
                         <td class="px-6 py-4 text-center"> <span class="text-white text-sm w-1/3 pb-1 bg-blue-600 font-semibold px-2 rounded-full"> {{$airplane->autonomy}} KM </span> </td>
                         <td class="px-6 py-4 text-center">
-                            <a href="" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-4 font-semibold rounded-full text-white bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-600 hover:to-blue-800 focus:outline-none transition ease-in-out duration-500 shadow-lg transform hover:scale-105">
+                            <a href=" {{route('airplaneEditForm', ['id' => $airplane->id])}} " class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-4 font-semibold rounded-full text-white bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-600 hover:to-blue-800 focus:outline-none transition ease-in-out duration-500 shadow-lg transform hover:scale-105">
                                 Edit
                             </a>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this airplane?');">
+                            <form action="{{ route('airplaneDelete', $airplane->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-4 font-semibold rounded-full text-white bg-red-500 hover:bg-red-700 focus:outline-none transition ease-in-out duration-500 shadow-lg transform hover:scale-105">
