@@ -143,16 +143,23 @@
           </div>
         <div class="-mx-3 md:flex mt-2 flex flex-col flex-wrap justify-center items-center mg-0-auto">
           <div class="md:w-full px-3 flex justify-center space-x-4">
-            <button action="{{route('flightsStore')}}" type="submit" class="md:w-1/3 bg-blue-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-blue-200 hover:border-gray-100 rounded-full">
+            <button action="{{route('flightsStore')}}" type="submit" class="md:w-1/3 bg-green-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-green-200 hover:border-green-100 rounded-full">
               Submit
             </button>
             <button type="reset" class="md:w-1/3 bg-red-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-red-300 hover:border-gray-100 rounded-full">
               Reset
             </button>
           </div>
+          <div class="md:w-full px-3 flex justify-center space-x-4 mt-5">
+            <a href="{{route('flightsIndex')}}" class="md:w-1/3 bg-blue-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-blue-200 hover:border-gray-100 rounded-full text-center">
+                Back
+            </a>
+          </div>
         </div>
       </div>
-    </form>
-  </div>
+      </form>
+    </div>
+</div>
+   
 
 @endsection
