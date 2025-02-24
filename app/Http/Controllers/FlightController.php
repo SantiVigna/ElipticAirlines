@@ -68,17 +68,43 @@ class FlightController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Flight $flight)
+    public function edit(Flight $flight, string $id)
     {
-        //
+        $airplanes = Airplane::count();
+        $flight = Flight::find($id);
+        return view('editFlightForm' , compact('airplanes', 'flight'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Flight $flight)
+    public function update(Request $request, string $id)
     {
-        //
+        $flight = Flight::find($id);
+
+        $validated = $request->validate([
+            'flight_number' => 'string',
+            'departure' => 'string',
+            'arrival' => 'string',
+            'departure_time' => 'string',
+            'arrival_time' => 'string',
+            'distance' => 'integer',
+            'price' => 'integer',
+            'airplane_id' => 'integer',
+        ]);
+
+        $flight->update([
+            'flight_number' => $validated['flight_number'],
+            'departure' => $validated['departure'],
+            'arrival' => $validated['arrival'],
+            'departure_time' => $validated['departure_time'],
+            'arrival_time' => $validated['arrival_time'],
+            'distance' => $validated['distance'],
+            'price' => $validated['price'],
+            'airplane_id' => $validated['airplane_id'],
+        ]);
+
+        return redirect()->route('flightsIndex');
     }
 
     /**
