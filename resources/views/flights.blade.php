@@ -43,14 +43,18 @@
                     </svg>
                     <p class="font-semibold text-sm ml-1 text-white">Edit Flight</p>
                   </a>
-                <a href="" class="flex mx-2 ml-6 h-8 px-2 flex-row items-baseline rounded-full bg-gradient-to-r from-red-400 to-red-600 text-white p-1 hover:from-red-600 hover:to-red-800 transition duration-300 shadow-lg transform hover:scale-105">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2" style="height: 12px; width: 12px;">
-                  <path d="M3 6h18M9 6v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6M10 6V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"></path>
-                  <path d="M18 6l-1 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 6"></path>
-                  <path d="M10 11v6M14 11v6"></path>
-                  </svg>
-                  <p class="font-semibold text-sm ml-1 text-white">Delete Flight</p>
-                </a>
+                    <form action="{{ route('flightDelete', $flight->id) }}" method="POST" class="flex mx-2 ml-6 h-8 px-2 flex-row items-baseline rounded-full bg-gradient-to-r from-red-400 to-red-600 text-white p-1 hover:from-red-600 hover:to-red-800 transition duration-300 shadow-lg transform hover:scale-105">
+                    @csrf
+                    @method('DELETE')
+                      <button type="submit" class="flex items-center">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2" style="height: 12px; width: 12px;">
+                        <path d="M3 6h18M9 6v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6M10 6V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"></path>
+                        <path d="M18 6l-1 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 6"></path>
+                        <path d="M10 11v6M14 11v6"></path>
+                        </svg>
+                        <p class="font-semibold text-sm ml-1 text-white">Delete Flight</p>
+                      </button>
+                    </form>
                 </div>  
             @endif
           @endauth

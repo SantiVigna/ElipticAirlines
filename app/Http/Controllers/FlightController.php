@@ -110,8 +110,10 @@ class FlightController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Flight $flight)
+    public function destroy(Flight $flight, string $id)
     {
-        //
+        $flight = Flight::findOrFail($id);
+        $flight->delete();
+        return redirect()->route('flightsIndex');
     }
 }
