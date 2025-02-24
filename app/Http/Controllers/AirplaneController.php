@@ -61,24 +61,44 @@ class AirplaneController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Airplane $airplane)
+    public function edit(Airplane $airplane, string $id)
     {
-        //
+        $airplane = Airplane::find($id);
+        return view('editAirplaneForm', compact('airplane'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Airplane $airplane)
+    public function update(Request $request, Airplane $airplane, string $id)
     {
-        //
+        $airplane = Airplane::find($id);
+
+        $validated = $request->validate([
+            'registration' => 'string',
+            'model' => 'string',
+            'capacity' => 'integer',
+            'autonomy' => 'integer',
+            'image' => 'string',
+        ]);
+
+        $airplane->update([
+            'registration' => $validated['registration'],
+            'model' => $validated['model'],
+            'capacity' => $validated['capacity'],
+            'autonomy' => $validated['autonomy'],
+        ]); 
+
+        return redirect()->route('airplanesIndex');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Airplane $airplane)
+    public function destroy(Airplane $airplane, string $id)
     {
-        //
+        $airplane = Airplane::findOrFail($id);
+        $airplane->delete();
+        return redirect()->route('airplanesIndex');
     }
 }
