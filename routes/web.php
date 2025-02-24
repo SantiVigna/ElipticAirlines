@@ -18,6 +18,7 @@ Route::get('flights/create' , [FlightController::class, 'create'])->name('flight
 Route::post('flights/store' , [FlightController::class, 'store'])->name('flightsStore');
 Route::get('flights/{id}' , [FlightController::class, 'edit'])->name('flightEditForm');
 Route::patch('flights/{id}' , [FlightController::class, 'update'])->name('flightUpdate');
+Route::delete('flights/{id}' , [FlightController::class, 'destroy'])->name('flightDelete');
 
 Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex');
 Route::get('airplanes/create' , [AirplaneController::class, 'create'])->name('airplanesForm');
