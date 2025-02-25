@@ -10,16 +10,16 @@ Additionally, it includes an administrative system to manage the company’s fle
 The web page has the following views:
 
 - **Home View**:
-![image](https://github.com/user-attachments/assets/2ecc849c-4aa2-4f5d-83b9-660f17f677eb)
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740487685/ElipticAirlines/qgjamaku5crrntq6o5of.png">
 
 - **Flights View fo Users/Guests**:
-![image](https://github.com/user-attachments/assets/d2fdc843-08c9-4a17-bb72-4225d5eddb42)
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740487817/ElipticAirlines/qz1xn2o9wsskr7rhgjdd.png">
 
 - **Flights View For Admin**:
-![image](https://github.com/user-attachments/assets/d2d490af-54c4-498f-ab7e-66a27d2a5aca)
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740487942/ElipticAirlines/htgnjwtvznylbwpfi26b.png">
 
 - **Airplanes View Only For Admin**:
-![image](https://github.com/user-attachments/assets/cf3bae87-8675-4cce-8ea0-cd4a61d2b8da)
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740488021/ElipticAirlines/bqgp7x3nrogvwevo4obf.png">
 
 - **Contact View**:
 ![image](https://github.com/user-attachments/assets/25a83372-fd0c-4b58-8421-1d1a30ea3fc5)
