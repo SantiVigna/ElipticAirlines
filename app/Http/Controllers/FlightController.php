@@ -60,10 +60,10 @@ class FlightController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Flight $flight)
+    /* public function show(Flight $flight)
     {
         //
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.

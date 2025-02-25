@@ -53,10 +53,10 @@ class AirplaneController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Airplane $airplane)
+    /* public function show(Airplane $airplane)
     {
         //
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
