@@ -135,11 +135,10 @@ With the following command we run the tests and we will also generate a coverage
 If everything is configured correctly, tests should pass, and the coverage report will show `87,3` coverage approximately.
 
 #### Test Summary:
-![image](https://github.com/user-attachments/assets/b5608182-e3c8-42a9-a1ee-87746d5c7f5a)
-
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740488240/ElipticAirlines/zxeyfkhos7fwvjz45mzf.png">
 
 #### Coverage Folder:
-![image](https://github.com/user-attachments/assets/54fec87e-f0eb-448c-a774-bfd0a3bc97f3)
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740488354/ElipticAirlines/ibfelbjgunhd3ivwlt3u.png">
 
 ## 📡🌐 Eliptic Airlines API
 
