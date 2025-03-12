@@ -14,18 +14,18 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('flights' , [FlightController::class, 'index'])->name('flightsIndex');
-Route::get('flights/create' , [FlightController::class, 'create'])->name('flightsForm');
-Route::post('flights/store' , [FlightController::class, 'store'])->name('flightsStore');
-Route::get('flights/edit/{id}' , [FlightController::class, 'edit'])->name('flightEditForm');
-Route::patch('flights/update/{id}' , [FlightController::class, 'update'])->name('flightUpdate');
-Route::delete('flights/delete/{id}' , [FlightController::class, 'destroy'])->name('flightDelete');
+Route::get('flights/create' , [FlightController::class, 'create'])->name('flightsForm')->middleware('admin');;
+Route::post('flights/store' , [FlightController::class, 'store'])->name('flightsStore')->middleware('admin');;
+Route::get('flights/edit/{id}' , [FlightController::class, 'edit'])->name('flightEditForm')->middleware('admin');;
+Route::patch('flights/update/{id}' , [FlightController::class, 'update'])->name('flightUpdate')->middleware('admin');;
+Route::delete('flights/delete/{id}' , [FlightController::class, 'destroy'])->name('flightDelete')->middleware('admin');;
 
-Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex');
-Route::get('airplanes/create' , [AirplaneController::class, 'create'])->name('airplanesForm');
-Route::post('airplanes/store' , [AirplaneController::class, 'store'])->name('airplanesStore');
-Route::get('airplanes/edit/{id}' , [AirplaneController::class, 'edit'])->name('airplaneEditForm');
-Route::patch('airplanes/update/{id}' , [AirplaneController::class, 'update'])->name('airplaneUpdate');
-Route::delete('airplanes/delete/{id}' , [AirplaneController::class, 'destroy'])->name('airplaneDelete');
+Route::get('airplanes' , [AirplaneController::class, 'index'])->name('airplanesIndex')->middleware('admin');;
+Route::get('airplanes/create' , [AirplaneController::class, 'create'])->name('airplanesForm')->middleware('admin');
+Route::post('airplanes/store' , [AirplaneController::class, 'store'])->name('airplanesStore')->middleware('admin');;
+Route::get('airplanes/edit/{id}' , [AirplaneController::class, 'edit'])->name('airplaneEditForm')->middleware('admin');;
+Route::patch('airplanes/update/{id}' , [AirplaneController::class, 'update'])->name('airplaneUpdate')->middleware('admin');;
+Route::delete('airplanes/delete/{id}' , [AirplaneController::class, 'destroy'])->name('airplaneDelete')->middleware('admin');;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
