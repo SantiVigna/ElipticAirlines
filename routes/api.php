@@ -4,6 +4,7 @@ use App\Models\Airplane;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\FlightController;
+use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\AirplaneController;
 
 Route::get('/user', function (Request $request) {
@@ -21,5 +22,10 @@ Route::post('/flights', [FlightController::class, 'store'])->name('flightsApiSto
 Route::get('/flights/{id}', [FlightController::class, 'show'])->name('flightsApiShow');
 Route::put('/flights/{id}', [FlightController::class, 'update'])->name('flightsApiUpdate');
 Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->name('flightsApiDestroy');
+
+Route::post('/cart/add', [BookingController::class, 'addToCart']);
+Route::get('/cart/view', [BookingController::class, 'viewCart']);
+Route::post('/cart/remove', [BookingController::class, 'removeFromCart']);
+/* Route::post('/cart/cancel', [BookingController::class, 'cancelBooking']); */
 
 
