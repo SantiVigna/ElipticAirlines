@@ -21,4 +21,11 @@ class Flight extends Model
     {
         return $this->belongsTo(Airplane::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->withTimestamps()
+            ->as('booking');
+    }
 }

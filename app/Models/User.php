@@ -24,6 +24,13 @@ class User extends Authenticatable
         'isAdmin'
     ];
 
+    public function flights()
+    {
+        return $this->belongsToMany(Flight::class)
+            ->withTimestamps()
+            ->as('booking');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
