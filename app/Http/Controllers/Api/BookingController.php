@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Models\FlightUser;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+
 
 class BookingController extends Controller
 {
@@ -14,38 +16,51 @@ class BookingController extends Controller
     public function addToCart(Request $request)
     {
         $request->validate([
-            'flight_id' => 'required|exists:flights,id',
+            'flight_id' => 'required|integer',
+            'seats' => 'required|integer|min:1',
         ]);
 
         $flight = Flight::findOrFail($request->flight_id);
 
         // Verificar si hay plazas disponibles
-        if ($flight->users()->count() >= $flight->capacity) {
+        if ($flight->users()->count() === $flight->capacity) {
             return response()->json(['message' => 'El vuelo está lleno'], 400);
         }
 
-        // Obtener el carrito de la sesión
-        $cart = session()->get('cart', []);
+        // Obtener el usuario autenticado
+            $user = JWTAuth::parseToken()->authenticate();
+            if (!$user) {
+                return response()->json(['message' => 'Usuario no autenticado'], 401);
+            }
+        
+        FlightUser::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'seats' => $request->seats,
+            'flight_id' => $flight->id,
+            'user_id' => $user->id,
+        ]);
 
-        // Agregar el vuelo si no está ya añadido
-        if (!isset($cart[$flight->id])) {
-            $cart[$flight->id] = [
-                'id' => $flight->id,
-                'name' => $flight->name,
-                'price' => $flight->price,
-            ];
-        }
-
-        session()->put('cart', $cart);
-
-        return response()->json(['message' => 'Vuelo añadido al carrito', 'cart' => $cart]);
+        return response()->json(['message' => 'Vuelo añadido al carrito'], 200);
     }
 
     // Ver el carrito
-    public function viewCart()
+    public function viewCart(Request $request)
     {
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no autenticado'], 401);
+        }
+
         $cart = session()->get('cart', []);
-        return response()->json(['cart' => $cart]);
+
+        // Filtrar el carrito para mostrar solo los vuelos del usuario autenticado
+        $userCart = array_filter($cart, function ($item) use ($user) {
+            return $item['user_name'] === $user->name;
+        });
+
+        return response()->json(['cart' => $userCart]);
     }
 
     // Eliminar un vuelo del carrito
