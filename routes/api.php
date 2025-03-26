@@ -3,6 +3,7 @@
 use App\Models\Airplane;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\FlightController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\AirplaneController;
@@ -28,4 +29,15 @@ Route::get('/cart/view', [BookingController::class, 'viewCart']);
 Route::post('/cart/remove', [BookingController::class, 'removeFromCart']);
 /* Route::post('/cart/cancel', [BookingController::class, 'cancelBooking']); */
 
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
+    Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
+    Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
+});
 
