@@ -14,16 +14,16 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanesApiIndex');
-Route::post('/airplanes', [AirplaneController::class, 'store'])->name('airplanesApiStore');
+Route::post('/airplanes', [AirplaneController::class, 'store'])->middleware('apiAdmin')->name('airplanesApiStore');
 Route::get('/airplanes/{id}', [AirplaneController::class, 'show'])->name('airplanesApiShow');
-Route::put('/airplanes/{id}', [AirplaneController::class, 'update'])->name('airplanesApiUpdate');
-Route::delete('/airplanes/{id}', [AirplaneController::class, 'destroy'])->name('airplanesApiDestroy');
+Route::put('/airplanes/{id}', [AirplaneController::class, 'update'])->middleware('apiAdmin')->name('airplanesApiUpdate');
+Route::delete('/airplanes/{id}', [AirplaneController::class, 'destroy'])->middleware('apiAdmin')->name('airplanesApiDestroy');
 
 Route::get('/flights', [FlightController::class, 'index'])->name('flightsApiIndex');
-Route::post('/flights', [FlightController::class, 'store'])->name('flightsApiStore');
+Route::post('/flights', [FlightController::class, 'store'])->middleware('apiAdmin')->name('flightsApiStore');
 Route::get('/flights/{id}', [FlightController::class, 'show'])->name('flightsApiShow');
-Route::put('/flights/{id}', [FlightController::class, 'update'])->name('flightsApiUpdate');
-Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->name('flightsApiDestroy');
+Route::put('/flights/{id}', [FlightController::class, 'update'])->middleware('apiAdmin')->name('flightsApiUpdate');
+Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->middleware('apiAdmin')->name('flightsApiDestroy');
 
 Route::post('/reservations/add', [BookingController::class, 'bookFlight']);
 Route::get('/reservations/view', [BookingController::class, 'viewReservations']);
