@@ -15,6 +15,7 @@ class Flight extends Model
         'distance',
         'price',
         'airplane_id',
+        'available',
     ];
 
     public function airplane()
@@ -26,6 +27,6 @@ class Flight extends Model
     {
         return $this->belongsToMany(User::class)
             ->withTimestamps()
-            ->as('booking');
+            ->as('reservations');
     }
 }

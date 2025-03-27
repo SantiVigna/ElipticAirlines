@@ -29,7 +29,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Flight::class)
             ->withTimestamps()
-            ->as('booking');
+            ->as('reservations');
     }
 
     /**
