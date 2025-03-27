@@ -24,10 +24,21 @@ class BookingController extends Controller
 
         $totalSeatsBooked = FlightUser::where('flight_id', $flight->id)->sum('seats');
 
-
-
         if ($totalSeatsBooked + $request->seats > $flight->airplane->capacity) {
-            return response()->json(['message' => 'El vuelo no tiene suficientes asientos disponibles'], 400);
+            return response()->json([
+                'message' => 'El vuelo no tiene suficientes asientos disponibles',
+                'available_seats' => $flight->airplane->capacity - $totalSeatsBooked,
+        ], 400);
+        }
+
+        if ($totalSeatsBooked == $flight->airplane->capacity) {
+            $flight->available = false;
+            $flight->save();
+        }
+
+        if ($totalSeatsBooked < $flight->airplane->capacity && $flight->available == false) {
+            $flight->available = true;
+            $flight->save();
         }
 
         $user = JWTAuth::parseToken()->authenticate();
@@ -73,7 +84,7 @@ class BookingController extends Controller
         }
 
         $reservation = FlightUser::find($id);
-
+       
         if (!$reservation || $reservation->user_id !== $user->id) {
             return response()->json(['message' => 'Reserva no encontrada'], 404);
         }
