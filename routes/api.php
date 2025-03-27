@@ -29,7 +29,7 @@ Route::post('/reservations/add', [BookingController::class, 'bookFlight'])->midd
 Route::get('/reservations/view', [BookingController::class, 'viewReservations'])->middleware('apiUser');
 Route::delete('/reservations/remove/{id}', [BookingController::class, 'cancelBooking'])->middleware('apiUser');
 
-Route::get('/reservations', [ReservationController::class, 'index']);
+Route::get('/reservations', [ReservationController::class, 'index'])->middleware('apiAdmin');
 
 Route::group([
     'middleware' => 'api',
