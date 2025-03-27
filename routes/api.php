@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\FlightController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\AirplaneController;
+use App\Http\Controllers\Api\ReservationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,11 +25,11 @@ Route::get('/flights/{id}', [FlightController::class, 'show'])->name('flightsApi
 Route::put('/flights/{id}', [FlightController::class, 'update'])->name('flightsApiUpdate');
 Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->name('flightsApiDestroy');
 
-Route::post('/cart/add', [BookingController::class, 'addToCart']);
-Route::get('/cart/view', [BookingController::class, 'viewCart']);
-Route::post('/cart/remove', [BookingController::class, 'removeFromCart']);
-/* Route::post('/cart/cancel', [BookingController::class, 'cancelBooking']); */
+Route::post('/reservations/add', [BookingController::class, 'bookFlight']);
+Route::get('/reservations/view', [BookingController::class, 'viewReservations']);
+Route::delete('/reservations/remove/{id}', [BookingController::class, 'cancelBooking']);
 
+Route::get('/admin/reservations', [ReservationController::class, 'index']);
 
 Route::group([
     'middleware' => 'api',
