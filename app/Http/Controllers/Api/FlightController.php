@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Flight;
+use App\Models\FlightUser;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -54,7 +55,12 @@ class FlightController extends Controller
     public function show(string $id)
     {
         $flight = Flight::findOrFail($id);
-        return response()->json($flight, 200); 
+        $reservations = FlightUser::where('flight_id', $flight->id)->get();
+        $remainingSeats = $flight->airplane->capacity - $reservations->sum('seats');
+        return response()->json([
+            'flight' => $flight,
+            'seats' => $remainingSeats,
+        ], 200); 
     }
 
     /**
@@ -84,6 +90,7 @@ class FlightController extends Controller
             'distance' => $validated['distance'],
             'price' => $validated['price'],
             'airplane_id' => $validated['airplane_id'],
+            
         ]);
 
         $flight->save();
