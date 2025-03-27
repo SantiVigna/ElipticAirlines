@@ -21,6 +21,7 @@ return new class extends Migration
             $table->bigInteger('distance');
             $table->bigInteger('price');
             $table->foreignId('airplane_id')->constrained('airplanes');
+            $table->boolean('available')->default(true);
             $table->timestamps();
         });
     }
