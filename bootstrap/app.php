@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ApiUser;
 use App\Http\Middleware\ApiAdmin;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Foundation\Application;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => CheckAdmin::class,
             'apiAdmin' => ApiAdmin::class,
+            'apiUser' => ApiUser::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
