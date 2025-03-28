@@ -12,7 +12,7 @@ The web page has the following views:
 - **Home View**:
 <img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740487685/ElipticAirlines/qgjamaku5crrntq6o5of.png">
 
-- **Flights View fo Users/Guests**:
+- **Flights View for Users/Guests**:
 <img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740487817/ElipticAirlines/qz1xn2o9wsskr7rhgjdd.png">
 
 - **Flights View For Admin**:
@@ -23,6 +23,24 @@ The web page has the following views:
 
 - **Contact View**:
 ![image](https://github.com/user-attachments/assets/25a83372-fd0c-4b58-8421-1d1a30ea3fc5)
+
+---
+
+## 🔒 JWT Authentication
+
+The platform uses **JWT (JSON Web Token)** and Web authentication. Authentication is required for most processes except for accessing the following views:
+
+- **Home View**
+- **Flights View for Users/Guests**
+- **Contact View**
+
+For all other views and API endpoints, a valid JWT token or web authorization must be provided.
+
+### How to Authenticate:
+1. Obtain a JWT token by logging in through the authentication endpoint.
+2. Include the token in the `Authorization` header as `Bearer <token>` for all subsequent requests.
+
+---
 
 ## 🛠️🚀 Tech Stack
 
@@ -47,6 +65,8 @@ The web page has the following views:
 - Composer
 - Postman
 
+---
+
 ## 📊📁 DB Diagram
 Below is a diagram of the database, showing different relationships between tables:
 
@@ -54,8 +74,11 @@ Below is a diagram of the database, showing different relationships between tabl
 
 - **Users Table:** Table that registers all the users in the web page.
 
-![image](https://github.com/user-attachments/assets/3cad9253-daea-4694-ac95-e16904fa381c)
+- **Flight_User Table:** This is a pivot table that establishes a many-to-many relationship between the `Users` and `Flights` tables. It tracks which users have booked which flights.
 
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1743173876/ElipticAirlines/y8reuvn8cfdkryysgfqz.png">
+
+---
 ## 🔧⚙️ Installation
 
 Follow these steps to install and set up the project:
@@ -119,8 +142,7 @@ npm run build
 
 To run test you should uncomment the following lines on the phpunit.xml file.
 
-![image](https://res.cloudinary.com/dierpqujk/image/upload/v1733829455/imagen_2024-12-10_121742908_b3mfqm.png)
-
+<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1743174039/ElipticAirlines/dnl7ds44h4cbzxuint6x.png">
 
 With the following command we run the tests and we will also generate a coverage report, the first one in the terminal, and the second one a html coverage report
 
@@ -132,17 +154,13 @@ With the following command we run the tests and we will also generate a coverage
   php artisan test --coverage-html=coverage-report
 ```
 
-If everything is configured correctly, tests should pass, and the coverage report will show `87,3` coverage approximately.
+If everything is configured correctly, tests should pass, and the coverage report will show `75,83` coverage approximately.
 
-#### Test Summary:
-<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740488240/ElipticAirlines/zxeyfkhos7fwvjz45mzf.png">
-
-#### Coverage Folder:
-<img src="https://res.cloudinary.com/dq2kswexq/image/upload/v1740488354/ElipticAirlines/ibfelbjgunhd3ivwlt3u.png">
+---
 
 ## 📡🌐 Eliptic Airlines API
 
-This API allows you to manage the crud from Airplanes and Flights.
+This API allows you to manage the CRUD operations for Airplanes, Flights, and Bookings.
 
 ### Airplanes
 
@@ -228,7 +246,9 @@ DELETE /api/airplanes/id
 - **Status Code:** 200, 404
 - **Content Type:** application/json
 
-### Kid
+---
+
+### Flights
 
 #### 1 Get all flights entries
 
@@ -318,10 +338,140 @@ DELETE /api/flights/id
 - **Status Code:** 200, 404
 - **Content Type:** application/json
 
+---
+
+### Bookings
+
+#### 1 Get all bookings
+
+```http
+GET /api/reservations
+```
+
+#### Response:
+- **Status Code:** 200
+- **Content Type:** application/json
+
+#### 2 Get my reservations 
+
+```http
+GET /api/reservations/view
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id`      | `integer` | **Required**. Booking ID     |
+
+#### Response:
+- **Status Code:** 200, 404
+- **Content Type:** application/json
+
+#### 3 Create a new booking
+
+```http
+POST /api/reservations/add
+```
+
+#### Response:
+- **Status Code:** 201
+- **Content Type:** application/json
+
+#### Body: 
+
+| Parameter | Type     | Description                    |
+| :-------- | :------- | :-------------------------     |
+| `flight_id` | `integer` | **Required**. ID of the flight being booked |
+| `seats` | `integer` | **Required**. Number of seats being booked |
+
+#### 5 Delete a booking by ID
+
+```http
+DELETE /api/bookings/id
+```
+
+#### Response:
+- **Status Code:** 200, 404
+- **Content Type:** application/json
+
+---
+
+
+### Authentication Endpoints
+
+
+#### 1 Register a New User
+
+```http
+POST /api/auth/register
+```
+
+#### Body:
+
+| Parameter             | Type     | Description                              |
+| :-------------------- | :------- | :--------------------------------------- |
+| `name`                | `string` | **Required**. User's full name           |
+| `email`               | `string` | **Required**. User's email address       |
+| `password`            | `string` | **Required**. User's password            |
+| `password_confirmation` | `string` | **Required**. Confirmation of password |
+
+#### Response:
+- **Status Code:** 201, 400
+- **Content Type:** application/json
+
+#### 2 Login with Email and Password
+
+```http
+POST /api/auth/login
+```
+
+#### Body:
+
+| Parameter     | Type     | Description                          |
+| :------------ | :------- | :----------------------------------- |
+| `email`       | `string` | **Required**. User's email address   |
+| `password`    | `string` | **Required**. User's password        |
+
+#### Response:
+- **Status Code:** 200, 401
+- **Content Type:** application/json
+
+#### 3 Logout
+
+```http
+POST /api/auth/logout
+```
+
+#### Response:
+- **Status Code:** 200, 401
+- **Content Type:** application/json
+
+#### 4 Refresh Token
+
+```http
+POST /api/auth/refresh
+```
+
+#### Response:
+- **Status Code:** 200, 401
+- **Content Type:** application/json
+
+
+#### 5 Get Authenticated User Info
+
+```http
+POST /api/auth/me
+```
+
+#### Response:
+- **Status Code:** 200, 401
+- **Content Type:** application/json
+
+--- 
+
 ## ✍️🙍 Author
 
 - **Santino Vigna:**
 [![GitHub](https://img.shields.io/badge/GitHub-Perfil-black?style=flat-square&logo=github)](https://github.com/SantiVigna)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?style=flat-square&logo=linkedin)](www.linkedin.com/in/miguel-garcía-lópez-609136284)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?style=flat-square&logo=linkedin)](www.linkedin.com/in/santinovignatiburzi)
 [![Correo](https://img.shields.io/badge/Email-Contacto-red?style=flat-square&logo=gmail)](mailto:ynotvigna@gmail.com)
 
