@@ -41,6 +41,7 @@ class Flight extends Model
     static function checkFlightAvailability(string $id) {
         $flight = Flight::findOrFail($id);
         $checkSeatsAvaliability = Flight::checkRemainingSeats($id);
+        $checkDateAvaliability = Flight::checkFlightDate($id);
 
         if ($checkSeatsAvaliability == 0) {
             $flight->available = false;
@@ -51,5 +52,20 @@ class Flight extends Model
             $flight->save();
         }
         return $checkSeatsAvaliability;
+    }
+
+    static function checkFlightDate(string $id) {
+        $flight = Flight::findOrFail($id);
+        $currentDate = date('Y-m-d');
+        $flightDate = $flight->departure_time;
+        if ($flightDate < $currentDate) {
+            $flight->available = false;
+            $flight->save();
+        }
+        if ($flightDate >= $currentDate) {
+            $flight->available = true;
+            $flight->save();
+        }
+        return $flightDate;
     }
 }
