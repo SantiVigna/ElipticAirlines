@@ -14,7 +14,8 @@ class FlightController extends Controller
      */
     public function index()
     {
-        $flights = Flight::all();
+        $currentDate = date('Y-m-d');
+        $flights = Flight::where('departure_time', '>=', $currentDate)->get();
         return response()->json($flights, 200);
     }
 
