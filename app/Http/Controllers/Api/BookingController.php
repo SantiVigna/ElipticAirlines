@@ -23,14 +23,20 @@ class BookingController extends Controller
 
         $flight = Flight::findOrFail($request->flight_id);
 
-        
         $avaliableSeats = Flight::checkRemainingSeats($flight->id);
+        
 
         if ($avaliableSeats < $request->seats) {
             return response()->json([
                 'message' => 'El vuelo no tiene suficientes asientos disponibles',
                 'available_seats' => $avaliableSeats,
             ], 400);
+        }
+
+        $checkFlightDate = Flight::checkFlightDate($flight->id);
+
+        if ($checkFlightDate < date('Y-m-d')) {   
+            return response()->json(['message' => 'El vuelo ya ha salido'], 400);
         }
 
         $user = JWTAuth::parseToken()->authenticate();
@@ -78,6 +84,12 @@ class BookingController extends Controller
         }
 
         $reservation = FlightUser::find($id);
+
+        $checkFlightDate = Flight::checkFlightDate($reservation->flight_id);
+
+        if ($checkFlightDate < date('Y-m-d')) {
+            return response()->json(['message' => 'No puedes cancelar una reserva de un vuelo que ya ha salido'], 400);
+        }
        
         if (!$reservation || $reservation->user_id !== $user->id) {
             return response()->json(['message' => 'Reserva no encontrada'], 404);
