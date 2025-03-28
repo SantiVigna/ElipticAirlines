@@ -3,13 +3,27 @@
 namespace Tests\Feature\Api;
 
 use Tests\TestCase;
+use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FlightControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected $admin;
+    protected $token;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->admin = User::factory()->create([
+            'isAdmin' => 1,
+        ]);
+        $this->token = JWTAuth::fromUser($this->admin);
+    }   
 
     public function test_CheckIfCanGetAllTheFlights() {
         $this->seed(DatabaseSeeder::class);
@@ -40,7 +54,7 @@ class FlightControllerTest extends TestCase
             'distance' => 620,
             'price' => 50,
             'airplane_id' => 8,
-        ]);
+        ], ['Authorization' => 'Bearer ' . $this->token]);
 
         $response->assertStatus(201)
                  ->assertJsonFragment([
@@ -59,7 +73,7 @@ class FlightControllerTest extends TestCase
             'distance' => 620,
             'price' => 50,
             'airplane_id' => 8,
-        ]);
+        ], ['Authorization' => 'Bearer ' . $this->token]);
 
         $response->assertStatus(200)
                  ->assertJsonFragment([
@@ -70,7 +84,7 @@ class FlightControllerTest extends TestCase
     public function test_CheckIfCanDeleteAFlight() {
         $this->seed(DatabaseSeeder::class);
 
-        $response = $this->deleteJson(route('flightsApiDestroy', 1));
+        $response = $this->deleteJson(route('flightsApiDestroy', 1), [], ['Authorization' => 'Bearer ' . $this->token]);
         $response->assertStatus(200);
     }
 }
