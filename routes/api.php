@@ -25,9 +25,9 @@ Route::get('/flights/{id}', [FlightController::class, 'show'])->name('flightsApi
 Route::put('/flights/{id}', [FlightController::class, 'update'])->middleware('apiAdmin')->name('flightsApiUpdate');
 Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->middleware('apiAdmin')->name('flightsApiDestroy');
 
-Route::post('/reservations/add', [BookingController::class, 'bookFlight'])->middleware('apiUser');
-Route::get('/reservations/view', [BookingController::class, 'viewReservations'])->middleware('apiUser');
-Route::delete('/reservations/remove/{id}', [BookingController::class, 'cancelBooking'])->middleware('apiUser');
+Route::post('/reservations/add', [BookingController::class, 'bookFlight'])->middleware('apiUser')->name('bookFlight');
+Route::get('/reservations/view', [BookingController::class, 'viewReservations'])->middleware('apiUser')->name('viewReservations');
+Route::delete('/reservations/remove/{id}', [BookingController::class, 'cancelBooking'])->middleware('apiUser')->name('cancelBooking');
 
 Route::get('/reservations', [ReservationController::class, 'index'])->middleware('apiAdmin');
 
