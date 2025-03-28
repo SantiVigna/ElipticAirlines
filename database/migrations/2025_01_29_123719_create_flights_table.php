@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('flight_number');
             $table->string('departure');
             $table->string('arrival');
-            $table->string('departure_time');
-            $table->string('arrival_time');
+            $table->date('departure_time');
+            $table->date('arrival_time');
             $table->bigInteger('distance');
             $table->bigInteger('price');
             $table->foreignId('airplane_id')->constrained('airplanes');
