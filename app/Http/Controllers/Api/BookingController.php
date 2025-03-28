@@ -10,9 +10,10 @@ use App\Models\FlightUser;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 
+
 class BookingController extends Controller
 {
-    // Agregar vuelo al carrito
+    
     public function bookFlight(Request $request)
     {
         $request->validate([
@@ -22,23 +23,14 @@ class BookingController extends Controller
 
         $flight = Flight::findOrFail($request->flight_id);
 
-        $totalSeatsBooked = FlightUser::where('flight_id', $flight->id)->sum('seats');
+        
+        $avaliableSeats = Flight::checkRemainingSeats($flight->id);
 
-        if ($totalSeatsBooked + $request->seats > $flight->airplane->capacity) {
+        if ($avaliableSeats < $request->seats) {
             return response()->json([
                 'message' => 'El vuelo no tiene suficientes asientos disponibles',
-                'available_seats' => $flight->airplane->capacity - $totalSeatsBooked,
-        ], 400);
-        }
-
-        if ($totalSeatsBooked == $flight->airplane->capacity) {
-            $flight->available = false;
-            $flight->save();
-        }
-
-        if ($totalSeatsBooked < $flight->airplane->capacity && $flight->available == false) {
-            $flight->available = true;
-            $flight->save();
+                'available_seats' => $avaliableSeats,
+            ], 400);
         }
 
         $user = JWTAuth::parseToken()->authenticate();
@@ -54,10 +46,12 @@ class BookingController extends Controller
             'user_id' => $user->id,
         ]);
 
+        $flightAvaliability = Flight::checkFlightAvailability($flight->id);
+
         return response()->json(['message' => 'Asientos reservados correctamente'], 200);
     }
 
-    // Ver el carrito
+    
     public function viewReservations()
     {
         $user = JWTAuth::parseToken()->authenticate();
@@ -75,7 +69,7 @@ class BookingController extends Controller
         return response()->json(['cart' => $cart]);
     }
 
-    // Cancelar una reserva
+    
     public function cancelBooking(string $id)
     {
         $user = JWTAuth::parseToken()->authenticate();
@@ -90,6 +84,9 @@ class BookingController extends Controller
         }
 
         $reservation->delete();
+
+        $flightAvaliability = Flight::checkFlightAvailability($reservation->flight_id);
+        
         return response()->json(['message' => 'Reserva cancelada con éxito']);
     }
 }
