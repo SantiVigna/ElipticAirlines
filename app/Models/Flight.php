@@ -43,11 +43,11 @@ class Flight extends Model
         $checkSeatsAvaliability = Flight::checkRemainingSeats($id);
         $checkDateAvaliability = Flight::checkFlightDate($id);
 
-        if ($checkSeatsAvaliability == 0) {
+        if ($checkSeatsAvaliability == 0 || $checkDateAvaliability < date('Y-m-d')) {
             $flight->available = false;
             $flight->save();
         }
-        if ($checkSeatsAvaliability > 0) {
+        if ($checkSeatsAvaliability > 0 && $checkDateAvaliability >= date('Y-m-d')) {
             $flight->available = true;
             $flight->save();
         }
