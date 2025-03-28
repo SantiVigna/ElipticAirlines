@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Flight;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\WithFaker;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
@@ -28,9 +29,12 @@ class FlightControllerTest extends TestCase
     public function test_CheckIfCanGetAllTheFlights() {
         $this->seed(DatabaseSeeder::class);
 
+        $currentDate = date('Y-m-d');
+        $flightCount = Flight::whereDate('departure_time', '>', $currentDate)->count();
+
         $response = $this->getJson(route('flightsApiIndex'));
         $response->assertStatus(200)
-                 ->assertJsonCount(10);
+                 ->assertJsonCount($flightCount);
     }
 
     public function test_CheckIfCanGetOnlyOneFlight() {
