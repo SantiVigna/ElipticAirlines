@@ -30,7 +30,7 @@ class BookingControllerTest extends TestCase
         $this->seed(DatabaseSeeder::class);
 
         $response = $this->postJson(route('bookFlight'), [
-            'flight_id' => 1,
+            'flight_id' => 2,
             'seats' => 1,
         ], ['Authorization' => 'Bearer ' . $this->token]);
 
