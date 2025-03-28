@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Tests\Feature\Models\FlightTest;
 
 class Flight extends Model
 {
@@ -28,5 +29,27 @@ class Flight extends Model
         return $this->belongsToMany(User::class)
             ->withTimestamps()
             ->as('reservations');
+    }
+
+    static function checkRemainingSeats(string $id) {
+        $flight = Flight::findOrFail($id);
+        $reservations = FlightUser::where('flight_id', $flight->id)->get();
+        $remainingSeats = $flight->airplane->capacity - $reservations->sum('seats');
+        return $remainingSeats;
+    }
+    
+    static function checkFlightAvailability(string $id) {
+        $flight = Flight::findOrFail($id);
+        $checkSeatsAvaliability = Flight::checkRemainingSeats($id);
+
+        if ($checkSeatsAvaliability == 0) {
+            $flight->available = false;
+            $flight->save();
+        }
+        if ($checkSeatsAvaliability > 0) {
+            $flight->available = true;
+            $flight->save();
+        }
+        return $checkSeatsAvaliability;
     }
 }
